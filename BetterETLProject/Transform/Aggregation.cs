@@ -2,14 +2,16 @@
 using BetterETLProject.Connection;
 using BetterETLProject.DTO;
 using BetterETLProject.QueryGeneration;
+using BetterETLProject.Validation;
 using Npgsql;
 
 namespace BetterETLProject.Transform;
 
-public class Aggregation
+public class Aggregation 
 {
     public DataTable Aggregate(AggregationDto dto)
     {
+        Validator.CheckNull(dto);
         var groupedBy = JoinColumns(dto.GroupedByColumnNames);
         var query = QueryGenerator.GenerateAggregateQuery(dto, groupedBy);
 
@@ -23,6 +25,7 @@ public class Aggregation
 
     private string JoinColumns(List<string> columns)
     {
+        Validator.CheckListIsEmpty(columns);
         return string.Join(", ", columns);
     }
 }

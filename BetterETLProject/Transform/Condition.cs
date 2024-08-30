@@ -2,6 +2,7 @@
 using BetterETLProject.Connection;
 using BetterETLProject.DTO;
 using BetterETLProject.QueryGeneration;
+using BetterETLProject.Validation;
 using Npgsql;
 
 namespace BetterETLProject.Transform;
@@ -10,6 +11,7 @@ public class Condition
 {
     public DataTable PerformFilter(ConditionDto dto)
     {
+        Validator.CheckNull(dto);
         var query = QueryGenerator.GenerateApplyConditionQuery(dto);
 
         var dataTable = new DataTable();

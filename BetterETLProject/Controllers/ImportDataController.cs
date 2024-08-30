@@ -9,7 +9,7 @@ public class ImportDataController : Controller
     [HttpPost]
     public void Import([FromBody] ImportDataDto dto)
     {
-        var converter = DataConverterFactory.CreateDataConverter(dto.Path.Type);
+        var converter = DataConverterFactory.CreateDataConverter(dto.FilePath.Type);
         converter.Convert(dto);
     }
 }

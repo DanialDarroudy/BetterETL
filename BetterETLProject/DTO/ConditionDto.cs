@@ -1,4 +1,4 @@
-﻿using BetterETLProject.Extract.Sources;
+﻿using BetterETLProject.Sources;
 
 namespace BetterETLProject.DTO;
 

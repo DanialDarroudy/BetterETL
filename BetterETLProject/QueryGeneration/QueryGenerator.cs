@@ -1,18 +1,21 @@
 ﻿using System.Text;
 using BetterETLProject.DTO;
-using BetterETLProject.Extract.Sources;
+using BetterETLProject.Sources;
+using BetterETLProject.Validation;
 
 namespace BetterETLProject.QueryGeneration;
 
 public static class QueryGenerator
 {
-    public static string GenerateCopyQuery(PathFile inputSource, List<string> columnNames)
+    public static string GenerateCopyQuery(FilePath inputSource, List<string> columnNames)
     {
+        Validator.CheckNull(inputSource);
+        Validator.CheckListIsEmpty(columnNames);
         return $"COPY {inputSource.TableName}({string.Join(",", columnNames)})" +
                $" FROM STDIN (FORMAT {inputSource.Type.ToUpper()})";
     }
 
-    public static string GenerateCreateTempTableQuery(string tableName, List<string> columnNames)
+    public static string GenerateCreateTableQuery(string tableName, List<string> columnNames)
     {
         var createTableQuery = new StringBuilder().Append("CREATE TABLE").Append(' ')
             .Append(tableName).Append(" (");
@@ -31,6 +34,7 @@ public static class QueryGenerator
 
     public static string GenerateAggregateQuery(AggregationDto dto, string groupedBy)
     {
+        Validator.CheckNull(dto);
         return
             $"SELECT {groupedBy}, {dto.AggregateType}({dto.AggregatedColumnName}::numeric) AS " +
             $"{dto.AggregatedColumnName}_result " + $"FROM {dto.TableName} " + $"GROUP BY {groupedBy}";
@@ -39,6 +43,7 @@ public static class QueryGenerator
 
     public static string GenerateApplyConditionQuery(ConditionDto dto)
     {
+        Validator.CheckNull(dto);
         return $"SELECT * FROM {dto.TableName} WHERE {dto.Condition}";
     }
 }

@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterETLProject", "BetterETLProject\BetterETLProject.csproj", "{9FC55909-058C-49CF-B1CE-63DF5E0BB23B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterETLProjectTest", "BetterETLProjectTest\BetterETLProjectTest.csproj", "{F8734C45-3AA0-43F1-887A-2A99027B78B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{9FC55909-058C-49CF-B1CE-63DF5E0BB23B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FC55909-058C-49CF-B1CE-63DF5E0BB23B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FC55909-058C-49CF-B1CE-63DF5E0BB23B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8734C45-3AA0-43F1-887A-2A99027B78B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8734C45-3AA0-43F1-887A-2A99027B78B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8734C45-3AA0-43F1-887A-2A99027B78B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8734C45-3AA0-43F1-887A-2A99027B78B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -30,7 +30,7 @@ public static class Validator
     {
         if (input == null)
         {
-            throw new AggregateException("parameter of the method is null");
+            throw new ArgumentException("The parameter of the method cannot be null.");
         }
     }
 }
