@@ -1,4 +1,6 @@
-﻿namespace BetterETLProject.Validation;
+﻿using System.Reflection;
+
+namespace BetterETLProject.Validation;
 
 public static class Validator
 {
@@ -31,6 +33,14 @@ public static class Validator
         if (input == null)
         {
             throw new ArgumentException("The parameter of the method cannot be null.");
+        }
+    }
+
+    public static void CheckConstructorIsNull(ConstructorInfo constructor, string className)
+    {
+        if (constructor == null)
+        {
+            throw new ArgumentException($"No public constructor found for {className}");
         }
     }
 }

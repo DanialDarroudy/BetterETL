@@ -17,6 +17,7 @@ public static class QueryGenerator
 
     public static string GenerateCreateTableQuery(string tableName, List<string> columnNames)
     {
+        Validator.CheckListIsEmpty(columnNames);
         var createTableQuery = new StringBuilder().Append("CREATE TABLE").Append(' ')
             .Append(tableName).Append(" (");
 
@@ -32,13 +33,16 @@ public static class QueryGenerator
         return createTableQuery.ToString();
     }
 
-    public static string GenerateAggregateQuery(AggregationDto dto, string groupedBy)
+    public static string GenerateAggregateQuery(AggregationDto dto)
     {
         Validator.CheckNull(dto);
+        Validator.CheckListIsEmpty(dto.GroupedByColumnNames);
+        
+        var groupedBy = string.Join(",", dto.GroupedByColumnNames);
+        
         return
             $"SELECT {groupedBy}, {dto.AggregateType}({dto.AggregatedColumnName}::numeric) AS " +
             $"{dto.AggregatedColumnName}_result " + $"FROM {dto.TableName} " + $"GROUP BY {groupedBy}";
-
     }
 
     public static string GenerateApplyConditionQuery(ConditionDto dto)

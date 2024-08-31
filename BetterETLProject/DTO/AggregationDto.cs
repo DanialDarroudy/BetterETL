@@ -9,4 +9,15 @@ public class AggregationDto
     public string AggregatedColumnName { get; set; } = null!;
     public string AggregateType { get; set; } = null!;
     public ConnectionSetting Address{ get; set; } = null!;
+    public AggregationDto(){}
+
+    public AggregationDto(string tableName, List<string> groupedByColumnNames, string aggregatedColumnName,
+        string aggregateType , ConnectionSetting address)
+    {
+        TableName = tableName;
+        GroupedByColumnNames = groupedByColumnNames;
+        AggregatedColumnName = aggregatedColumnName;
+        AggregateType = aggregateType;
+        Address = address;
+    }
 }

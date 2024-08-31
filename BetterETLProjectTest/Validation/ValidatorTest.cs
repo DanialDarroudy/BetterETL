@@ -1,9 +1,13 @@
-﻿using BetterETLProject.DTO;
+﻿using System.Reflection;
+using BetterETLProject.Connection;
+using BetterETLProject.DTO;
+using BetterETLProject.Extract.Create;
 using BetterETLProject.Extract.DataConverterAdaptor;
 using BetterETLProject.Sources;
 using BetterETLProject.Transform;
 using BetterETLProject.Validation;
 using FluentAssertions;
+using Npgsql;
 
 namespace BetterETLProjectTest.Validation;
 
@@ -64,7 +68,7 @@ public class ValidatorTest
     public void CheckListIsEmpty_ShouldThrowArgumentException_WhenListIsEmpty<T>(List<T> elements)
     {
         // Arrange
-        
+
         // Act
         var action = () => Validator.CheckListIsEmpty(elements);
         // Assert
@@ -84,17 +88,25 @@ public class ValidatorTest
     public void CheckListIsEmpty_ShouldNotThrowArgumentException_WhenListNotEmpty<T>(List<T> elements)
     {
         // Arrange
-        
+
         // Act
         var action = () => Validator.CheckListIsEmpty(elements);
         // Assert
         action.Should().NotThrow<ArgumentException>();
     }
+
     public static IEnumerable<object[]> ProvideNotEmptyList()
     {
-        yield return [new List<IDataConverter>(){new CsvDataConverter()}];
-        yield return [new List<string>(){"Age" , "Name"}];
-        yield return [new List<ISource>(){null!}];
+        yield return
+        [
+            new List<IDataConverter>()
+            {
+                new CsvDataConverter(
+                    new CreatorConnection(new NpgsqlConnection()), new CsvCreatorTable())
+            }
+        ];
+        yield return [new List<string>() { "Age", "Name" }];
+        yield return [new List<ISource>() { null! }];
     }
 
     [Theory]
@@ -102,7 +114,7 @@ public class ValidatorTest
     public void CheckNull_ShouldThrowArgumentException_WhenParameterIsNull<T>(T input)
     {
         // Arrange
-        
+
         // Act
         var action = () => Validator.CheckNull(input);
         // Assert
@@ -127,17 +139,18 @@ public class ValidatorTest
     public void CheckNull_ShouldNotThrowArgumentException_WhenParameterIsNotNull<T>(T input)
     {
         // Arrange
-        
+
         // Act
         var action = () => Validator.CheckNull(input);
         // Assert
         action.Should().NotThrow<ArgumentException>();
     }
+
     public static IEnumerable<object[]> ProvideNotNullObject()
     {
-        ISource address = new ConnectionSetting(null! , null! , null! , null!);
+        ISource address = new ConnectionSetting();
         yield return [address];
-        ISource path = new FilePath(null! , null!);
+        ISource path = new FilePath();
         yield return [path];
         var aggDto = new AggregationDto();
         yield return [aggDto];
@@ -145,5 +158,29 @@ public class ValidatorTest
         yield return [conDto];
         const string userName = "postgres";
         yield return [userName];
+    }
+
+    [Fact]
+    public void CheckConstructorIsNull_ShouldThrowArgumentException_WhenConstructorIsNull()
+    {
+        // Arrange
+        ConstructorInfo constructor = null!;
+        const string className = "TxtDataConverter";
+        // Act
+        var action = () => Validator.CheckConstructorIsNull(constructor , className);
+        // Assert
+        action.Should().Throw<ArgumentException>().WithMessage(
+            $"No public constructor found for {className}");
+    }
+    [Fact]
+    public void CheckConstructorIsNull_ShouldNotThrowArgumentException_WhenConstructorIsNotNull() 
+    {
+        // Arrange
+        var constructor = typeof(CsvDataConverter).GetConstructors()[0];
+        const string className = "CsvDataConverter";
+        // Act
+        var action = () => Validator.CheckConstructorIsNull(constructor, className);
+        // Assert
+        action.Should().NotThrow<ArgumentException>();
     }
 }

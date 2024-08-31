@@ -4,10 +4,10 @@ namespace BetterETLProject.Sources;
 
 public class ConnectionSetting : ISource
 {
-    public string Host { get; set; }
-    public string UserName { get; set; }
-    public string PassWord { get; set; }
-    public string DataBase { get; set; }
+    public string Host { get; set; } = null!;
+    public string UserName { get; set; } = null!;
+    public string PassWord { get; set; } = null!;
+    public string DataBase { get; set; } = null!;
 
     public ConnectionSetting(string host, string userName, string passWord, string dataBase)
     {
@@ -16,6 +16,7 @@ public class ConnectionSetting : ISource
         PassWord = passWord;
         DataBase = dataBase;
     }
+    public ConnectionSetting(){}
 
     public new string ToString()
     {
