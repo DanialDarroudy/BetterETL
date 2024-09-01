@@ -147,6 +147,8 @@ public class ValidatorTest
         yield return [conDto];
         const string userName = "postgres";
         yield return [userName];
+        var impDto = new ImportDataDto();
+        yield return [impDto];
     }
 
     [Fact]

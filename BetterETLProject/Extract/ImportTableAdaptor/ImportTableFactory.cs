@@ -1,6 +1,9 @@
-﻿using System.Reflection;
+﻿using System.Globalization;
+using System.Reflection;
 using BetterETLProject.DTO;
 using BetterETLProject.Validation;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace BetterETLProject.Extract.ImportTableAdaptor;
 
@@ -15,6 +18,6 @@ public static class ImportTableFactory
         var importerConstructor = importerType.GetConstructors().FirstOrDefault()!;
         Validator.CheckConstructorIsNull(importerConstructor, importerName);
         return (IImporterTable)importerConstructor.Invoke(
-            [new StreamReader(dto.FilePath.ToString())]);
+        [new StreamReader(dto.FilePath.ToString())]);
     }
 }

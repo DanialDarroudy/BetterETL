@@ -16,12 +16,11 @@ public class CsvImporterTable : IImporterTable
     {
         _streamReader.ReadLine();
         if (connection is not NpgsqlConnection npgsqlConnection) return;
+        
         using var writer = npgsqlConnection.BeginTextImport(query);
         while (!_streamReader.EndOfStream)
-        {
             writer.WriteLine(_streamReader.ReadLine()!);
-        }
-
+        
         _streamReader.Dispose();
     }
 }

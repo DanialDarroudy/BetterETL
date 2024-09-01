@@ -11,6 +11,12 @@
   &lt;Assembly Path="C:\Users\d.darroudi\.nuget\packages\fastjson\2.4.0.4\lib\net5.0\fastJSON.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\d.darroudi\AppData\Local\JetBrains\Rider2024.1\resharper-host\temp\Rider\vAny\CoverageData\_BetterETL.1977275993\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=062ddcf9_002D8c39_002D4371_002Db6f2_002Da9854761c321/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CheckNull_ShouldNotThrowArgumentException_WhenParameterIsNotNull" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::50BDF19E-1B63-4BB0-B9CA-D5C1B705B9D1::net8.0::BetterETLProjectTest.Validation.ValidatorTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::50BDF19E-1B63-4BB0-B9CA-D5C1B705B9D1::net8.0::BetterETLProjectTest.Extract.ImportTableAdaptor.CsvImporterTableTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2fd62c84_002De780_002D41a5_002D896d_002D6d30a4be046f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
