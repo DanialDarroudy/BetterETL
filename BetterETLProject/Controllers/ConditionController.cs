@@ -9,10 +9,11 @@ namespace BetterETLProject.Controllers;
 
 public class ConditionController : Controller
 {
-    [HttpGet]
+    [HttpPost]
     public IActionResult ApplyCondition([FromBody] ConditionDto dto)
     {
-        var resultTable = new Condition(new CreatorConnection(new NpgsqlConnection())).PerformFilter(dto);
+        var resultTable = new Condition(new CreatorConnection(new NpgsqlConnection())
+            , new NpgsqlCommand() , new NpgsqlDataAdapter()).PerformFilter(dto);
         return Ok(JsonConvert.SerializeObject(resultTable));
     }
 }

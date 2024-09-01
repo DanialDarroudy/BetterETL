@@ -25,12 +25,13 @@ public class Condition
         var query = QueryGenerator.GenerateApplyConditionQuery(dto);
 
         var dataTables = new DataSet();
-        using var connection = _creatorConnection.CreateConnection(dto.Address);
+        var connection = _creatorConnection.CreateConnection(dto.Address);
         _command.CommandText = query;
         _command.Connection = connection;
-        _dataAdapter.InsertCommand = _command;
+        _dataAdapter.SelectCommand = _command;
         _dataAdapter.Fill(dataTables);
-
+        _command.Dispose();
+        connection.Dispose();
         return dataTables.Tables[0];
     }
 }

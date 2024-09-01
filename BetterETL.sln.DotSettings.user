@@ -7,31 +7,12 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ANpgsqlConnection_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F94000967eb3343f5a99c6081eb64a838157000_003F14_003Fed00746d_003FNpgsqlConnection_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AStreamReader_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F24372012c6c94138bf3f496e104366ffc8f918_003F8d_003Fc6e6ceed_003FStreamReader_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=9FC55909_002D058C_002D49CF_002DB1CE_002D63DF5E0BB23B_002Fd_003AConnection_002Ff_003ASingletonConnection_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4a197c72_002Deeef_002D4ffc_002D9a9d_002Df6121de42678/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GenerateCopyQuery_ShouldThrowArgumentException_WhenInputSourceIsNull" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.QueryGeneration.QueryGeneratorTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Sources.ConnectionSettingTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Sources.FilePathTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Validation.ValidatorTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Extract.DataConverterAdaptor.DataConverterFactoryTest.CreateDataConverter_ShouldReturnDataConverter_WhenTypeIsValidAndCanBeCastToDataConverter&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Extract.DataConverterAdaptor.DataConverterFactoryTest.CreateDataConverter_ShouldThrowArgumentException_WhenTypeIsInvalid&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Extract.DataConverterAdaptor.DataConverterFactoryTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::AggregationTest.Aggregate_ShouldReturnDataTable_WhenDtoIsValid&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::AggregationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Transform.AggregationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Connection.CreateConnectionTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Extract.DataConverterAdaptor.CsvDataConverterTest.Convert_ShouldCallWithSpecificParameter_WhenCalled&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Users\d.darroudi\.nuget\packages\fastjson\2.4.0.4\lib\net5.0\fastJSON.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\d.darroudi\AppData\Local\JetBrains\Rider2024.1\resharper-host\temp\Rider\vAny\CoverageData\_BetterETL.1977275993\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2fd62c84_002De780_002D41a5_002D896d_002D6d30a4be046f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=668120da_002Dc624_002D4a41_002D9ab7_002D4665ecdaf4c5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CheckTypeIsNull_ShouldThrowArgumentException_WhenTypeIsNull" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Validation.ValidatorTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Sources.FilePathTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Sources.ConnectionSettingTest.ToString_ShouldReturnCorrectFilePath_WhenInvoked&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Sources.ConnectionSettingTest.ToString_ShouldThrowArgumentException_WhenTableNameOrTypeAreNull&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Sources.ConnectionSettingTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.QueryGeneration.QueryGeneratorTest.GenerateCopyQuery_ShouldReturnCopyQuery_WhenParametersDoesNotNull&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.QueryGeneration.QueryGeneratorTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::F8734C45-3AA0-43F1-887A-2A99027B78B3::net8.0::BetterETLProjectTest.Extract.DataConverterAdaptor.CsvDataConverterTest.Convert_ShouldCallWithSpecificParameter_WhenCalled&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	</wpf:ResourceDictionary>

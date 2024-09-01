@@ -9,10 +9,11 @@ namespace BetterETLProject.Controllers;
 
 public class AggregationController : Controller
 {
-    [HttpGet]
+    [HttpPost]
     public IActionResult Aggregate([FromBody] AggregationDto dto)
     {
-        var resultTable = new Aggregation(new CreatorConnection(new NpgsqlConnection())).Aggregate(dto);
+        var resultTable = new Aggregation(new CreatorConnection(new NpgsqlConnection())
+            , new NpgsqlCommand() , new NpgsqlDataAdapter()).Aggregate(dto);
         return Ok(JsonConvert.SerializeObject(resultTable));
     }
 }

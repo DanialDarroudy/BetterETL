@@ -1,8 +1,6 @@
 ﻿using System.Data;
-using BetterETLProject.Sources;
-using BetterETLProject.Validation;
 
-namespace BetterETLProject.Extract.Create;
+namespace BetterETLProject.Extract.CreateTableAdaptor;
 
 public class CsvCreatorTable : ICreatorTable
 {
@@ -15,9 +13,8 @@ public class CsvCreatorTable : ICreatorTable
         _command = command;
     }
     
-    public List<string> GetColumnNames(FilePath filePath)
+    public List<string> GetColumnNames()
     {
-        Validator.CheckNull(filePath);
         var result = _streamReader.ReadLine()!.Split(',').ToList();
         _streamReader.Dispose();
         return result;

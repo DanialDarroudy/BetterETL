@@ -1,32 +1,35 @@
 ﻿using BetterETLProject.Connection;
 using BetterETLProject.DTO;
-using BetterETLProject.Extract.Create;
-using BetterETLProject.Extract.Import;
+using BetterETLProject.Extract.CreateTableAdaptor;
+using BetterETLProject.Extract.ImportTableAdaptor;
 using BetterETLProject.QueryGeneration;
+using BetterETLProject.Validation;
 
 namespace BetterETLProject.Extract.DataConverterAdaptor;
 
 public class CsvDataConverter : IDataConverter
 {
     private readonly ICreatorConnection _connection;
-    private readonly ICreatorTable _dataBaseHelper;
+    private readonly ICreatorTable _creatorTable;
     private readonly IImporterTable _importerTable;
 
-    public CsvDataConverter(ICreatorConnection connection, ICreatorTable dataBaseHelper , IImporterTable importerTable)
+    public CsvDataConverter(ICreatorConnection connection, ICreatorTable creatorTable , IImporterTable importerTable)
     {
         _connection = connection;
-        _dataBaseHelper = dataBaseHelper;
+        _creatorTable = creatorTable;
         _importerTable = importerTable;
     }
 
     public void Convert(ImportDataDto dto)
     {
-        var columnNames = _dataBaseHelper.GetColumnNames(dto.FilePath);
-        using var connection = _connection.CreateConnection(dto.Address);
-        _dataBaseHelper.CreateTable(
+        Validator.CheckNull(dto);
+        var columnNames = _creatorTable.GetColumnNames();
+        var connection = _connection.CreateConnection(dto.Address);
+        _creatorTable.CreateTable(
             QueryGenerator.GenerateCreateTableQuery(dto.FilePath.TableName, columnNames),connection);
 
         _importerTable.ImportDataToTable(
-            QueryGenerator.GenerateCopyQuery(dto.FilePath, columnNames), dto.FilePath,connection);
+            QueryGenerator.GenerateCopyQuery(dto.FilePath, columnNames),connection);
+        connection.Dispose();
     }
 }

@@ -25,6 +25,21 @@ public class CreateConnectionTest
         // Assert
         actual.Should().NotBeNull();
         actual.Should().BeSameAs(mockConnection);
+        actual.ConnectionString.Should().Be(address.ToString());
         actual.State.Should().Be(ConnectionState.Open);
+    }
+
+    [Fact]
+    public void CreateConnection_ShouldThrowArgumentException_WhenAddressIsNull()
+    {
+        // Arrange
+        var mockConnection = Substitute.For<IDbConnection>();
+        var creatorConnection = new CreatorConnection(mockConnection);
+        ConnectionSetting address = null!;
+        // Act
+        var action = () => creatorConnection.CreateConnection(address);
+        // Assert
+        action.Should().Throw<ArgumentException>().WithMessage(
+            "The parameter of the method cannot be null.");
     }
 }

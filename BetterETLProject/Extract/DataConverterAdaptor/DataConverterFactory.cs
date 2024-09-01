@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using BetterETLProject.Connection;
-using BetterETLProject.Extract.Create;
+using BetterETLProject.DTO;
+using BetterETLProject.Extract.CreateTableAdaptor;
+using BetterETLProject.Extract.ImportTableAdaptor;
 using BetterETLProject.Validation;
 using Npgsql;
 
@@ -8,25 +10,16 @@ namespace BetterETLProject.Extract.DataConverterAdaptor;
 
 public static class DataConverterFactory
 {
-    public static IDataConverter CreateDataConverter(string type)
+    public static IDataConverter CreateDataConverter(ImportDataDto dto)
     {
-        var converterName = $"{typeof(DataConverterFactory).Namespace}.{type}DataConverter";
-        var helperName = $"{typeof(ICreatorTable).Namespace}.{type}DataConverterHelper";
-        
+        var converterName = $"{typeof(IDataConverter).Namespace}.{dto.FilePath.Type}DataConverter";
         var converterType = Assembly.GetExecutingAssembly().GetType(converterName, false, true)!;
-        var helperType = Assembly.GetExecutingAssembly().GetType(helperName, false, true)!;
-        
-        Validator.CheckTypeIsNull(converterType, type);
-        Validator.CheckTypeIsNull(helperType, type);
-        
+        Validator.CheckTypeIsNull(converterType, dto.FilePath.Type);
         Validator.CheckTypeCanCastToParent(converterType, typeof(IDataConverter));
-        Validator.CheckTypeCanCastToParent(helperType, typeof(ICreatorTable));
-
-        var constructor = converterType.GetConstructors().FirstOrDefault()!;
-        Validator.CheckConstructorIsNull(constructor, converterName);
-
-        var converter = (IDataConverter)constructor.Invoke(
-            [new CreatorConnection(new NpgsqlConnection()), Activator.CreateInstance(helperType)]);
+        var converterConstructor = converterType.GetConstructors().FirstOrDefault()!;
+        Validator.CheckConstructorIsNull(converterConstructor , converterName);
+        var converter = (IDataConverter)converterConstructor.Invoke([new CreatorConnection(new NpgsqlConnection())
+            , CreateTableFactory.CreateCreatorTable(dto), ImportTableFactory.CreateImporterTable(dto)]);
         return converter;
     }
 }

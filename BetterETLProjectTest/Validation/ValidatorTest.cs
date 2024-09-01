@@ -1,13 +1,10 @@
 ﻿using System.Reflection;
-using BetterETLProject.Connection;
 using BetterETLProject.DTO;
-using BetterETLProject.Extract.Create;
 using BetterETLProject.Extract.DataConverterAdaptor;
 using BetterETLProject.Sources;
 using BetterETLProject.Transform;
 using BetterETLProject.Validation;
 using FluentAssertions;
-using Npgsql;
 
 namespace BetterETLProjectTest.Validation;
 
@@ -88,23 +85,15 @@ public class ValidatorTest
     public void CheckListIsEmpty_ShouldNotThrowArgumentException_WhenListNotEmpty<T>(List<T> elements)
     {
         // Arrange
-
+    
         // Act
         var action = () => Validator.CheckListIsEmpty(elements);
         // Assert
         action.Should().NotThrow<ArgumentException>();
     }
-
+    
     public static IEnumerable<object[]> ProvideNotEmptyList()
     {
-        yield return
-        [
-            new List<IDataConverter>()
-            {
-                new CsvDataConverter(
-                    new CreatorConnection(new NpgsqlConnection()), new CsvCreatorTable())
-            }
-        ];
         yield return [new List<string>() { "Age", "Name" }];
         yield return [new List<ISource>() { null! }];
     }

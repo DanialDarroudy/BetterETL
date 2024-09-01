@@ -1,9 +1,11 @@
 ﻿using System.Data;
 using BetterETLProject.Connection;
 using BetterETLProject.DTO;
-using BetterETLProject.Extract.Create;
+using BetterETLProject.Extract.CreateTableAdaptor;
 using BetterETLProject.Extract.DataConverterAdaptor;
+using BetterETLProject.Extract.ImportTableAdaptor;
 using BetterETLProject.Sources;
+using FluentAssertions;
 using NSubstitute;
 
 namespace BetterETLProjectTest.Extract.DataConverterAdaptor;
@@ -11,30 +13,48 @@ namespace BetterETLProjectTest.Extract.DataConverterAdaptor;
 public class CsvDataConverterTest
 {
     [Fact]
-    public void Convert_ShouldCallWithSpecificParameter_WhenCalled()
+    public void Convert_ShouldCallWithSpecificParameter_WhenDtoIsNotNull()
     {
         // Arrange
-        var dto = new ImportDataDto(new FilePath("Students" , "csv") , new ConnectionSetting());
+        var dto = new ImportDataDto(new FilePath("Students", "csv"), new ConnectionSetting());
         var columnNames = new List<string>() { "FirstName", "Average" };
         var creatorConnection = Substitute.For<ICreatorConnection>();
-        var dataBaseHelper = Substitute.For<ICreatorTable>();
+        var creatorTable = Substitute.For<ICreatorTable>();
+        var importTable = Substitute.For<IImporterTable>();
         var connection = Substitute.For<IDbConnection>();
-        dataBaseHelper.GetColumnNames(dto.FilePath).Returns(columnNames);
+        creatorTable.GetColumnNames().Returns(columnNames);
         creatorConnection.CreateConnection(dto.Address).Returns(connection);
-        var converter = new CsvDataConverter(creatorConnection, dataBaseHelper);
-        
+        var converter = new CsvDataConverter(creatorConnection, creatorTable, importTable);
+
         // Act
         converter.Convert(dto);
-        
+
         // Assert
-        dataBaseHelper.Received(1).CreateTable(
+        creatorTable.Received(1).CreateTable(
             Arg.Is<string>(query => query.Contains("CREATE TABLE")),
             Arg.Is<IDbConnection>(conn => conn == connection)
         );
-        dataBaseHelper.Received(1).ImportDataToTable(
+        importTable.Received(1).ImportDataToTable(
             Arg.Is<string>(query => query.Contains("COPY")),
-            dto.FilePath,
             Arg.Is<IDbConnection>(conn => conn == connection)
         );
+        connection.Received(1).Dispose();
+    }
+
+    [Fact]
+    public void Convert_ShouldCallWithSpecificParameter_WhenDtoIsNull()
+    {
+        // Arrange
+        ImportDataDto dto = null!;
+        var creatorConnection = Substitute.For<ICreatorConnection>();
+        var creatorTable = Substitute.For<ICreatorTable>();
+        var importTable = Substitute.For<IImporterTable>();
+        var converter = new CsvDataConverter(creatorConnection, creatorTable, importTable);
+        
+        // Act
+        var action = () => converter.Convert(dto);
+        // Assert
+        action.Should().Throw<ArgumentException>().WithMessage(
+            "The parameter of the method cannot be null.");
     }
 }

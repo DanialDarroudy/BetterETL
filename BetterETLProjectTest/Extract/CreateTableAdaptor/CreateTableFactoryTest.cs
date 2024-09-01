@@ -1,32 +1,31 @@
 ﻿using BetterETLProject.DTO;
-using BetterETLProject.Extract.DataConverterAdaptor;
+using BetterETLProject.Extract.CreateTableAdaptor;
 using BetterETLProject.Sources;
 using FluentAssertions;
 
-namespace BetterETLProjectTest.Extract.DataConverterAdaptor;
+namespace BetterETLProjectTest.Extract.CreateTableAdaptor;
 
-public class DataConverterFactoryTest
+public class CreateTableFactoryTest
 {
     [Fact]
-    public void CreateDataConverter_ShouldReturnDataConverter_WhenTypeIsValidAndCanBeCastToDataConverter()
+    public void CreateCreatorTable_ShouldReturnCreatorTable_WhenTypeIsValidAndCanBeCastToDataConverter()
     {
         // Arrange
         var filePath = new FilePath("Students" , "Csv");
         var dto = new ImportDataDto(filePath , new ConnectionSetting());
         // Act
-        var actual = DataConverterFactory.CreateDataConverter(dto);
+        var actual = CreateTableFactory.CreateCreatorTable(dto);
         // Assert
-        actual.Should().BeOfType<CsvDataConverter>();
+        actual.Should().BeOfType<CsvCreatorTable>();
     }
-    
     [Fact]
-    public void CreateDataConverter_ShouldThrowArgumentException_WhenTypeIsInvalid()
+    public void CreateCreatorTable_ShouldThrowArgumentException_WhenTypeIsInvalid()
     {
         // Arrange
         var filePath = new FilePath("Students" , "Txt");
         var dto = new ImportDataDto(filePath , new ConnectionSetting());
         // Act
-        var action = () => DataConverterFactory.CreateDataConverter(dto);
+        var action = () => CreateTableFactory.CreateCreatorTable(dto);
         // Assert
         action.Should().Throw<ArgumentException>().WithMessage(
             $"Unsupported data converter type: {dto.FilePath.Type}");
