@@ -12,7 +12,7 @@ public class ConditionController : Controller
     [HttpPost]
     public IActionResult ApplyCondition([FromBody] ConditionDto dto)
     {
-        var resultTable = new Condition(new CreatorConnection(new NpgsqlConnection())
+        var resultTable = new Condition(new CreatorConnection(dto.Address)
             , new NpgsqlCommand() , new NpgsqlDataAdapter()).PerformFilter(dto);
         return Ok(JsonConvert.SerializeObject(resultTable));
     }

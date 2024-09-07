@@ -4,15 +4,12 @@ namespace BetterETLProject.Validation;
 
 public static class Validator
 {
-    public static void CheckTypeIsNull(Type type , string typeName)
+    public static dynamic InvalidType(string typeName)
     {
-        if (type == null)
-        {
-            throw new ArgumentException($"Unsupported data converter type: {typeName}");
-        }
+        throw new ArgumentException($"Unsupported data converter type: {typeName}");
     }
 
-    public static void CheckTypeCanCastToParent(Type child , Type parent)
+    public static void CheckTypeCanCastToParent(Type child, Type parent)
     {
         if (!parent.IsAssignableFrom(child))
         {

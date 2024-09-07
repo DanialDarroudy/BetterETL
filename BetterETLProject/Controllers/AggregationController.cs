@@ -12,7 +12,7 @@ public class AggregationController : Controller
     [HttpPost]
     public IActionResult Aggregate([FromBody] AggregationDto dto)
     {
-        var resultTable = new Aggregation(new CreatorConnection(new NpgsqlConnection())
+        var resultTable = new Aggregation(new CreatorConnection(dto.Address)
             , new NpgsqlCommand() , new NpgsqlDataAdapter()).Aggregate(dto);
         return Ok(JsonConvert.SerializeObject(resultTable));
     }

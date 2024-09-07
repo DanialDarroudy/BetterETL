@@ -1,9 +1,10 @@
 ﻿using System.Data;
 using BetterETLProject.Sources;
+using Npgsql;
 
 namespace BetterETLProject.Connection;
 
 public interface ICreatorConnection
 {
-    public IDbConnection CreateConnection(ConnectionSetting address);
+    public NpgsqlConnection CreateConnection();
 }

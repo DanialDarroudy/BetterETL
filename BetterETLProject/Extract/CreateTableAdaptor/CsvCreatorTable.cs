@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using BetterETLProject.Connection;
 
 namespace BetterETLProject.Extract.CreateTableAdaptor;
 
@@ -20,11 +21,13 @@ public class CsvCreatorTable : ICreatorTable
         return result;
     }
 
-    public void CreateTable(string query, IDbConnection connection)
+    public void CreateTable(string query, ICreatorConnection creatorConnection)
     {
+        var connection = creatorConnection.CreateConnection();
         _command.CommandText = query;
         _command.Connection = connection;
         _command.ExecuteNonQuery();
+        connection.Dispose();
         _command.Dispose();
     }
 }

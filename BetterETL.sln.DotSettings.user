@@ -9,6 +9,9 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=9FC55909_002D058C_002D49CF_002DB1CE_002D63DF5E0BB23B_002Fd_003AConnection_002Ff_003ASingletonConnection_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\d.darroudi\.nuget\packages\fastjson\2.4.0.4\lib\net5.0\fastJSON.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\d.darroudi\.nuget\packages\lumenworkscsvreader2\4.3.0\lib\net6.0\CsvReader.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\d.darroudi\.nuget\packages\npgsql\8.0.3\lib\net8.0\Npgsql.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\d.darroudi\.nuget\packages\sep\0.5.3\lib\net8.0\Sep.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\d.darroudi\AppData\Local\JetBrains\Rider2024.1\resharper-host\temp\Rider\vAny\CoverageData\_BetterETL.1977275993\Snapshot\snapshot.utdcvr</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=062ddcf9_002D8c39_002D4371_002Db6f2_002Da9854761c321/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CheckNull_ShouldNotThrowArgumentException_WhenParameterIsNotNull" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
