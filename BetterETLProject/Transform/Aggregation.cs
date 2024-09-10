@@ -21,7 +21,6 @@ public class Aggregation
 
     public DataTable Aggregate(AggregationDto dto)
     {
-        Validator.CheckNull(dto);
         var query = QueryGenerator.GenerateAggregateQuery(dto);
 
         var dataTables = new DataSet();

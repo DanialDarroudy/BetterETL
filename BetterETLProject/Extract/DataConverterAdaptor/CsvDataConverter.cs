@@ -22,7 +22,6 @@ public class CsvDataConverter : IDataConverter
 
     public void Convert(ImportDataDto dto)
     {
-        Validator.CheckNull(dto);
         var columnNames = _creatorTable.GetColumnNames();
         var connection = _connection.CreateConnection(dto.Address);
         _creatorTable.CreateTable(

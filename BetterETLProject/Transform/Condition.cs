@@ -21,7 +21,6 @@ public class Condition
 
     public DataTable PerformFilter(ConditionDto dto)
     {
-        Validator.CheckNull(dto);
         var query = QueryGenerator.GenerateApplyConditionQuery(dto);
 
         var dataTables = new DataSet();

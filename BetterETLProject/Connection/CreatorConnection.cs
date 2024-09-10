@@ -14,7 +14,6 @@ public class CreatorConnection : ICreatorConnection
     }
     public IDbConnection CreateConnection(ConnectionSetting address)
     {
-        Validator.CheckNull(address);
         _connection.ConnectionString = address.ToString();
         _connection.Open();
         return _connection;

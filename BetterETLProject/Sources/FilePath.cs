@@ -16,8 +16,6 @@ public class FilePath : ISource
 
     public new string ToString()
     {
-        Validator.CheckNull(TableName);
-        Validator.CheckNull(Type);
         return $"{TableName}.{Type}";
     }
 }

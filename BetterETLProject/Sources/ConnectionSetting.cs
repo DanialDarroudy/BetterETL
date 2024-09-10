@@ -1,6 +1,4 @@
-﻿using BetterETLProject.Validation;
-
-namespace BetterETLProject.Sources;
+﻿namespace BetterETLProject.Sources;
 
 public class ConnectionSetting : ISource
 {
@@ -20,10 +18,6 @@ public class ConnectionSetting : ISource
 
     public new string ToString()
     {
-        Validator.CheckNull(Host);
-        Validator.CheckNull(UserName);
-        Validator.CheckNull(PassWord);
-        Validator.CheckNull(DataBase);
         return $"Host={Host};Username={UserName};Password={PassWord};Database={DataBase}";
     }
 }
