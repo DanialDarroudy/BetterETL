@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using BetterETLProject.DTO;
 using BetterETLProject.Sources;
-using BetterETLProject.Validation;
 
 namespace BetterETLProject.QueryGeneration;
 

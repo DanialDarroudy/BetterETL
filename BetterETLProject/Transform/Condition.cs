@@ -2,7 +2,6 @@
 using BetterETLProject.Connection;
 using BetterETLProject.DTO;
 using BetterETLProject.QueryGeneration;
-using BetterETLProject.Validation;
 
 namespace BetterETLProject.Transform;
 
@@ -24,7 +23,7 @@ public class Condition
         var query = QueryGenerator.GenerateApplyConditionQuery(dto);
 
         var dataTables = new DataSet();
-        var connection = _creatorConnection.CreateConnection(dto.Address);
+        var connection = _creatorConnection.CreateConnection();
         _command.CommandText = query;
         _command.Connection = connection;
         _dataAdapter.SelectCommand = _command;

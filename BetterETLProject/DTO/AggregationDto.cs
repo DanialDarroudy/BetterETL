@@ -13,12 +13,13 @@ public class AggregationDto
     public AggregationDto(){}
 
     public AggregationDto(string tableName, List<string> groupedByColumnNames, string aggregatedColumnName,
-        string aggregateType , ConnectionSetting address)
+        string aggregateType , ConnectionSetting address , string limit)
     {
         TableName = tableName;
         GroupedByColumnNames = groupedByColumnNames;
         AggregatedColumnName = aggregatedColumnName;
         AggregateType = aggregateType;
         Address = address;
+        Limit = limit;
     }
 }

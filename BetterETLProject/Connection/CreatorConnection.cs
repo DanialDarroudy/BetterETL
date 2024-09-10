@@ -1,21 +1,21 @@
 ﻿using System.Data;
 using BetterETLProject.Sources;
-using BetterETLProject.Validation;
+using Npgsql;
 
 namespace BetterETLProject.Connection;
 
 public class CreatorConnection : ICreatorConnection
 {
-    private readonly IDbConnection _connection;
+    private readonly ConnectionSetting _address;
 
-    public CreatorConnection(IDbConnection connection)
+    public CreatorConnection(ConnectionSetting address)
     {
-        _connection = connection;
+        _address = address;
     }
-    public IDbConnection CreateConnection(ConnectionSetting address)
+    public IDbConnection CreateConnection()
     {
-        _connection.ConnectionString = address.ToString();
-        _connection.Open();
-        return _connection;
+        var connection = new NpgsqlConnection(_address.ToString());
+        connection.Open();
+        return connection;
     }
 }

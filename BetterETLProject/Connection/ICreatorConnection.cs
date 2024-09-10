@@ -5,5 +5,5 @@ namespace BetterETLProject.Connection;
 
 public interface ICreatorConnection
 {
-    public IDbConnection CreateConnection(ConnectionSetting address);
+    public IDbConnection CreateConnection();
 }

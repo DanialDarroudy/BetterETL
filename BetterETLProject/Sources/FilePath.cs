@@ -1,6 +1,4 @@
-﻿using BetterETLProject.Validation;
-
-namespace BetterETLProject.Sources;
+﻿namespace BetterETLProject.Sources;
 
 public class FilePath : ISource
 {

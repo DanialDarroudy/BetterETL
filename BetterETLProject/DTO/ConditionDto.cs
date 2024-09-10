@@ -10,11 +10,12 @@ public class ConditionDto
     public ConnectionSetting Address{ get; set; } = null!;
     public string Limit{ get; set; } = null!;
 
-    public ConditionDto(string condition, string tableName, ConnectionSetting address)
+    public ConditionDto(string condition, string tableName, ConnectionSetting address , string limit)
     {
         Condition = condition;
         TableName = tableName;
         Address = address;
+        Limit = limit;
     }
 
     public ConditionDto() {}

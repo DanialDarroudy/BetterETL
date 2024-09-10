@@ -14,6 +14,7 @@ public static class CreateTableFactory
         {
             return new CsvCreatorTable(new StreamReader(dto.FilePath.ToString()) , new NpgsqlCommand());
         }
-        throw new UnsupportedContentTypeException($"Unsupported creator table type: {dto.FilePath.Type}");
+
+        return null!;
     }
 }

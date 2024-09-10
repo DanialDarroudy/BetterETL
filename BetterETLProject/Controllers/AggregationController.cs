@@ -15,7 +15,7 @@ public class AggregationController : Controller
     public IActionResult Aggregate([FromBody] AggregationDto dto)
     {
         new AggregationDtoValidator().ValidateAndThrow(dto);
-        var resultTable = new Aggregation(new CreatorConnection(new NpgsqlConnection())
+        var resultTable = new Aggregation(new CreatorConnection(dto.Address)
             , new NpgsqlCommand() , new NpgsqlDataAdapter()).Aggregate(dto);
         return Ok(JsonConvert.SerializeObject(resultTable));
     }

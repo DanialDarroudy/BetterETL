@@ -1,8 +1,8 @@
-﻿using System.Data;
+﻿using BetterETLProject.Connection;
 
 namespace BetterETLProject.Extract.ImportTableAdaptor;
 
 public interface IImporterTable
 {
-    public void ImportDataToTable(string query, IDbConnection connection);
+    public Task ImportDataToTable(string query , ICreatorConnection creatorConnection);
 }

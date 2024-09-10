@@ -15,7 +15,7 @@ public class ConditionController : Controller
     public IActionResult ApplyCondition([FromBody] ConditionDto dto)
     {
         new ConditionDtoValidator().ValidateAndThrow(dto);
-        var resultTable = new Condition(new CreatorConnection(new NpgsqlConnection())
+        var resultTable = new Condition(new CreatorConnection(dto.Address)
             , new NpgsqlCommand() , new NpgsqlDataAdapter()).PerformFilter(dto);
         return Ok(JsonConvert.SerializeObject(resultTable));
     }

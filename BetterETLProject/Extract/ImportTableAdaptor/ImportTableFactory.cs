@@ -1,6 +1,4 @@
 ﻿using BetterETLProject.DTO;
-using BetterETLProject.Validation;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 
 namespace BetterETLProject.Extract.ImportTableAdaptor;
@@ -13,6 +11,7 @@ public static class ImportTableFactory
         {
             return new CsvImporterTable(new StreamReader(dto.FilePath.ToString()));
         }
-        throw new UnsupportedContentTypeException($"Unsupported importer table type: {dto.FilePath.Type}");
+
+        return null!;
     }
 }
