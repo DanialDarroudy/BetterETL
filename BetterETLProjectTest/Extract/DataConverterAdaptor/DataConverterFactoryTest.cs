@@ -1,5 +1,6 @@
 ﻿using BetterETLProject.DTO;
 using BetterETLProject.Extract.DataConverterAdaptor;
+using BetterETLProject.Extract.Factories;
 using BetterETLProject.Sources;
 using FluentAssertions;
 

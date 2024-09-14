@@ -1,4 +1,6 @@
 ﻿using BetterETLProject.DTO;
+using BetterETLProject.Extract;
+using BetterETLProject.Extract.Factories;
 using BetterETLProject.Extract.ImportTableAdaptor;
 using BetterETLProject.Sources;
 using FluentAssertions;

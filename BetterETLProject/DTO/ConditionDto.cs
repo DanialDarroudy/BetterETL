@@ -1,5 +1,4 @@
-﻿using BetterETLProject.Connection;
-using BetterETLProject.Sources;
+﻿using BetterETLProject.Sources;
 
 namespace BetterETLProject.DTO;
 
