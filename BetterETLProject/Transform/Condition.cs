@@ -27,8 +27,6 @@ public class Condition : ICondition
 
     public DataTable PerformFilter(ConditionDto dto)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         var query = _queryGenerator.GenerateApplyConditionQuery(dto);
         _creatorConnection.Address = dto.Address;
         var dataTables = new DataSet();
@@ -36,13 +34,11 @@ public class Condition : ICondition
         _command.CommandText = query;
         _command.Connection = connection;
         _dataAdapter.SelectCommand = _command;
-        _logger.LogInformation("Start filling {Tables} tables with this adaptor {Adaptor}", dataTables, _dataAdapter);
+        _logger.LogInformation("Start filling table");
         _dataAdapter.Fill(dataTables);
-        _logger.LogInformation("{Tables} tables is filled", dataTables);
+        _logger.LogInformation("Table is filled");
         _command.Dispose();
-        connection.Dispose();
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
+        connection.Dispose(); ;
         return dataTables.Tables[0];
     }
 }

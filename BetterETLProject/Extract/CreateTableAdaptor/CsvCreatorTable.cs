@@ -19,19 +19,15 @@ public class CsvCreatorTable : ICreatorTable
     
     public List<string> GetColumnNames()
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
+        _logger.LogInformation("Reading header of csv file");
         var result = _streamReader.ReadLine()!.Split(',').ToList();
+        _logger.LogInformation("Header of csv file is read");
         _streamReader.Dispose();
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         return result;
     }
 
     public void CreateTable(string query, ICreatorConnection creatorConnection)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         _command.CommandText = query;
         _command.Connection = creatorConnection.CreateConnection();
         _logger.LogInformation("Table is creating");
@@ -39,7 +35,5 @@ public class CsvCreatorTable : ICreatorTable
         _logger.LogInformation("Table is created");
         _command.Connection.Dispose();
         _command.Dispose();
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
     }
 }

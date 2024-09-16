@@ -26,17 +26,15 @@ public class CsvDataConverter : IDataConverter
         _logger = logger;
     }
 
-    public void Convert(ImportDataDto dto)
+    public async Task Convert(ImportDataDto dto)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         var creatorTable = _creatorFactory.Create(dto);
         var importerTable = _importerFactory.Create(dto);
         _creatorConnection.Address = dto.Address;
         var columnNames = creatorTable.GetColumnNames();
         creatorTable.CreateTable(
             _queryGenerator.GenerateCreateTableQuery(dto.FilePath.TableName, columnNames), _creatorConnection);
-        importerTable.ImportDataToTable(
+        await importerTable.ImportDataToTable(
             _queryGenerator.GenerateCopyQuery(dto.FilePath, columnNames), _creatorConnection);
     }
 }

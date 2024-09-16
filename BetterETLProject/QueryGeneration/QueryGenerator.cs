@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Text;
+﻿using System.Text;
 using BetterETLProject.DTO;
 using BetterETLProject.Sources;
 
@@ -16,20 +15,14 @@ public class QueryGenerator : IQueryGenerator
 
     public string GenerateCopyQuery(FilePath inputSource, List<string> columnNames)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         var result =  $"COPY {inputSource.TableName}({string.Join(",", columnNames)})" +
                $" FROM STDIN (FORMAT {inputSource.Type.ToUpper()})";
         _logger.LogInformation("be generated this query : {Query}", result);
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         return result;
     }
 
     public string GenerateCreateTableQuery(string tableName, List<string> columnNames)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         var createTableQuery = new StringBuilder().Append("CREATE TABLE").Append(' ')
             .Append(tableName).Append(" (");
 
@@ -44,37 +37,27 @@ public class QueryGenerator : IQueryGenerator
         createTableQuery.Append(");");
         var result = createTableQuery.ToString();
         _logger.LogInformation("be generated this query : {Query}", result);
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         return result;
     }
 
     public string GenerateAggregateQuery(AggregationDto dto)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         var groupedBy = string.Join(",", dto.GroupedByColumnNames);
         var result =
             $"SELECT {groupedBy}, {dto.AggregateType}({dto.AggregatedColumnName}::numeric) AS " +
             $"{dto.AggregatedColumnName}_result " + $"FROM {dto.TableName} " + $"GROUP BY {groupedBy} " +
             $"LIMIT {dto.Limit} ";
         _logger.LogInformation("be generated this query : {Query}", result);
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         return result;
     }
 
     public string GenerateApplyConditionQuery(ConditionDto dto)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         var result =
             $"SELECT * FROM {dto.TableName} " +
             $"WHERE {dto.Condition} " +
             $"LIMIT {dto.Limit} ";
         _logger.LogInformation("be generated this query : {Query}", result);
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         return result;
     }
 }

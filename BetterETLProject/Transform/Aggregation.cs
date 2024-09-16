@@ -26,8 +26,6 @@ public class Aggregation : IAggregation
 
     public DataTable Aggregate(AggregationDto dto)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         var query = _queryGenerator.GenerateAggregateQuery(dto);
         _creatorConnection.Address = dto.Address;
         var dataTables = new DataSet();
@@ -35,13 +33,11 @@ public class Aggregation : IAggregation
         _command.CommandText = query;
         _command.Connection = connection;
         _dataAdapter.SelectCommand = _command;
-        _logger.LogInformation("Start filling {Tables} tables with this adaptor {Adaptor}", dataTables, _dataAdapter);
+        _logger.LogInformation("Start filling table");
         _dataAdapter.Fill(dataTables);
-        _logger.LogInformation("{Tables} tables is filled", dataTables);
+        _logger.LogInformation("Table is filled");
         _command.Dispose();
         connection.Dispose();
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         return dataTables.Tables[0];
     }
 }

@@ -9,10 +9,10 @@ namespace BetterETLProject.Controllers;
 public class ImportDataController : Controller
 {
     private readonly ILogger<ImportDataController> _logger;
-    private readonly AbstractValidator<ImportDataDto> _validator;
+    private readonly IValidator<ImportDataDto> _validator;
     private readonly IFactory<IDataConverter> _converterFactory;
 
-    public ImportDataController(ILogger<ImportDataController> logger , AbstractValidator<ImportDataDto> validator
+    public ImportDataController(ILogger<ImportDataController> logger , IValidator<ImportDataDto> validator
         , IFactory<IDataConverter> converterFactory)
     {
         _logger = logger;
@@ -21,16 +21,14 @@ public class ImportDataController : Controller
     }
 
     [HttpPost]
-    public void Import([FromBody] ImportDataDto dto)
+    public async Task Import([FromBody] ImportDataDto dto)
     {
-        _logger.LogInformation("Called {MethodName} method from {ControllerName}",
+        _logger.LogInformation("Called {MethodName} action method from {ControllerName} controller",
             ControllerContext.ActionDescriptor.ActionName , ControllerContext.ActionDescriptor.ControllerName);
-        _logger.LogInformation("Validating {DTO}", dto);
-        _validator.ValidateAndThrow(dto);
-        _logger.LogInformation("Validation of {DTO} is successful", dto);
+        await _validator.ValidateAndThrowAsync(dto);
         var converter = _converterFactory.Create(dto);
-        converter.Convert(dto);
-        _logger.LogInformation("Data of {File} imported to {DataBase} successfully"
-            , dto.FilePath.ToString(), dto.Address.ToString());
+        await converter.Convert(dto);
+        _logger.LogInformation("{MethodName} action method from {ControllerName} controller is finished"
+            , ControllerContext.ActionDescriptor.ActionName, ControllerContext.ActionDescriptor.ControllerName);
     }
 }

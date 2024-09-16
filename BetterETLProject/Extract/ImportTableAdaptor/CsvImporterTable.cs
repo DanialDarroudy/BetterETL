@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using BetterETLProject.Connection;
+﻿using BetterETLProject.Connection;
 using Npgsql;
 
 namespace BetterETLProject.Extract.ImportTableAdaptor;
@@ -8,8 +7,8 @@ public class CsvImporterTable : IImporterTable
 {
     private readonly ILogger<CsvImporterTable> _logger;
     private readonly StreamReader _streamReader;
-    private const int ChunkSize = 250000;
-    private const int NumberOfThreads = 50;
+    private const int ChunkSize = 75000;
+    private const int NumberOfThreads = 25;
 
     public CsvImporterTable(StreamReader streamReader, ILogger<CsvImporterTable> logger)
     {
@@ -18,8 +17,6 @@ public class CsvImporterTable : IImporterTable
     }
     public async Task ImportDataToTable(string query, ICreatorConnection creatorConnection)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         await _streamReader.ReadLineAsync();
         var tasks = new List<Task>();
         var chunkedRows = new string[ChunkSize];
@@ -29,7 +26,6 @@ public class CsvImporterTable : IImporterTable
             chunkedRows[indexInChunk] = (await _streamReader.ReadLineAsync())!;
             indexInChunk++;
             if (indexInChunk < ChunkSize) continue;
-            _logger.LogInformation("Chunk is read");
             const int rowsPerThread = ChunkSize / NumberOfThreads;
             for (var i = 0; i < NumberOfThreads; i++)
             {
@@ -41,26 +37,21 @@ public class CsvImporterTable : IImporterTable
             await Task.WhenAll(tasks);
             indexInChunk = 0;
         }
-
+        _logger.LogInformation("All chunk is read");
         if (indexInChunk > 0)
         {
-            _logger.LogInformation("Remain is read");
             tasks.Add(Task.Run(() => WriteEachThread(query, creatorConnection, chunkedRows[0..indexInChunk])));
+            _logger.LogInformation("Remain is read");
         }
-
-        await Task.WhenAll(tasks);
+        _logger.LogInformation("All thread is finished");
         _streamReader.Dispose();
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
     }
 
     private async Task WriteEachThread(string query, ICreatorConnection creatorConnection, string[] rows)
     {
-        _logger.LogInformation("Thread {Thread} start writing" , Thread.CurrentThread);
         using var connection = creatorConnection.CreateConnection();
         if (connection is not NpgsqlConnection npgsqlConnection) return;
         await using var writer = await npgsqlConnection.BeginTextImportAsync(query);
         await writer.WriteAsync(string.Join("\n", rows) + "\n");
-        _logger.LogInformation("Thread {Thread} finished writing" , Thread.CurrentThread);
     }
 }

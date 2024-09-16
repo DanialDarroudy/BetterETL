@@ -17,12 +17,9 @@ public class ImportTableFactory : IFactory<IImporterTable>
 
     public IImporterTable Create(ImportDataDto dto)
     {
-        _logger.LogInformation("Called {MethodName} method from {ClassName} class"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         IImporterTable result = null!;
         if (dto.FilePath.Type.Equals("CSV", StringComparison.OrdinalIgnoreCase))
         {
-            _logger.LogInformation("Create csv importer table");
             result = new CsvImporterTable(new StreamReader(dto.FilePath.ToString())
                 , _provider.GetRequiredService<ILogger<CsvImporterTable>>());
         }
@@ -30,8 +27,6 @@ public class ImportTableFactory : IFactory<IImporterTable>
         {
             _logger.LogError("Doesnt create importer table");
         }
-        _logger.LogInformation("{MethodName} method from {ClassName} class is finished"
-            , MethodBase.GetCurrentMethod()!.Name, GetType().Name);
         return result;
     }
 }
