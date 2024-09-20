@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using BetterETLProject.Connection;
+using BetterETLProject.Connections;
 
 namespace BetterETLProject.Extract.CreateTableAdaptor;
 

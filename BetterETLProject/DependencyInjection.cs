@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using BetterETLProject.Connection;
+using BetterETLProject.Connections;
 using BetterETLProject.DTO;
 using BetterETLProject.Extract.CreateTableAdaptor;
 using BetterETLProject.Extract.DataConverterAdaptor;
@@ -36,5 +36,7 @@ public class DependencyInjection
         serviceCollection.AddTransient<IDbDataAdapter, NpgsqlDataAdapter>();
 
         serviceCollection.AddTransient<CsvDataConverter>();
+
+        serviceCollection.AddTransient<ICreatorConnectionPool , CreatorConnectionPool>();
     }
 }

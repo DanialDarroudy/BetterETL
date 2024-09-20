@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using System.Reflection;
-using BetterETLProject.Connection;
+using BetterETLProject.Connections;
 using BetterETLProject.DTO;
 using BetterETLProject.QueryGeneration;
 

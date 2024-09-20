@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using BetterETLProject.Connection;
+using BetterETLProject.Connections;
 using BetterETLProject.Sources;
 using FluentAssertions;
 using NSubstitute;

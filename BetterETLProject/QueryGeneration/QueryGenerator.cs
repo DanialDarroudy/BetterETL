@@ -17,7 +17,7 @@ public class QueryGenerator : IQueryGenerator
     {
         var result =  $"COPY {inputSource.TableName}({string.Join(",", columnNames)})" +
                $" FROM STDIN (FORMAT {inputSource.Type.ToUpper()})";
-        _logger.LogInformation("be generated this query : {Query}", result);
+        // _logger.LogInformation("be generated this query : {Query}", result);
         return result;
     }
 
@@ -36,7 +36,7 @@ public class QueryGenerator : IQueryGenerator
 
         createTableQuery.Append(");");
         var result = createTableQuery.ToString();
-        _logger.LogInformation("be generated this query : {Query}", result);
+        // _logger.LogInformation("be generated this query : {Query}", result);
         return result;
     }
 
